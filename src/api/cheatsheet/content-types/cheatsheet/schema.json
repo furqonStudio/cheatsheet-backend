@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "materials",
+  "collectionName": "cheatsheets",
   "info": {
-    "singularName": "material",
-    "pluralName": "materials",
-    "displayName": "Material",
-    "description": ""
+    "singularName": "cheatsheet",
+    "pluralName": "cheatsheets",
+    "displayName": "Cheatsheet"
   },
   "options": {
     "draftAndPublish": true
@@ -17,7 +16,7 @@
       "required": true
     },
     "description": {
-      "type": "string",
+      "type": "richtext",
       "required": true
     }
   }
