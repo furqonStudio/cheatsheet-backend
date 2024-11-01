@@ -501,6 +501,7 @@ export interface ApiCheatsheetCheatsheet extends Struct.CollectionTypeSchema {
     singularName: 'cheatsheet';
     pluralName: 'cheatsheets';
     displayName: 'Cheatsheet';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -508,6 +509,8 @@ export interface ApiCheatsheetCheatsheet extends Struct.CollectionTypeSchema {
   attributes: {
     title: Schema.Attribute.String & Schema.Attribute.Required;
     description: Schema.Attribute.RichText & Schema.Attribute.Required;
+    material: Schema.Attribute.Relation<'manyToOne', 'api::material.material'>;
+    notes: Schema.Attribute.Relation<'oneToMany', 'api::note.note'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -537,6 +540,10 @@ export interface ApiMaterialMaterial extends Struct.CollectionTypeSchema {
   };
   attributes: {
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    cheatsheets: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cheatsheet.cheatsheet'
+    >;
     description: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -550,6 +557,39 @@ export interface ApiMaterialMaterial extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::material.material'
     > &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNoteNote extends Struct.CollectionTypeSchema {
+  collectionName: 'notes';
+  info: {
+    singularName: 'note';
+    pluralName: 'notes';
+    displayName: 'Note';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.RichText;
+    cheatsheet: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::cheatsheet.cheatsheet'
+    >;
+    block: Schema.Attribute.Blocks;
+    json: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::note.note'> &
       Schema.Attribute.Private;
   };
 }
@@ -938,6 +978,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::cheatsheet.cheatsheet': ApiCheatsheetCheatsheet;
       'api::material.material': ApiMaterialMaterial;
+      'api::note.note': ApiNoteNote;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;

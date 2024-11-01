@@ -16,6 +16,12 @@
       "type": "string",
       "required": true
     },
+    "cheatsheets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::cheatsheet.cheatsheet",
+      "mappedBy": "material"
+    },
     "description": {
       "type": "string",
       "required": true

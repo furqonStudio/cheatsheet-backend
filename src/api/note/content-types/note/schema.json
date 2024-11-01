@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notes",
+  "info": {
+    "singularName": "note",
+    "pluralName": "notes",
+    "displayName": "Note",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "cheatsheet": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::cheatsheet.cheatsheet",
+      "inversedBy": "notes"
+    },
+    "block": {
+      "type": "blocks"
+    },
+    "json": {
+      "type": "json"
+    }
+  }
+}

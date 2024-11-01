@@ -4,7 +4,8 @@
   "info": {
     "singularName": "cheatsheet",
     "pluralName": "cheatsheets",
-    "displayName": "Cheatsheet"
+    "displayName": "Cheatsheet",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,6 +19,18 @@
     "description": {
       "type": "richtext",
       "required": true
+    },
+    "material": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::material.material",
+      "inversedBy": "cheatsheets"
+    },
+    "notes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::note.note",
+      "mappedBy": "cheatsheet"
     }
   }
 }
