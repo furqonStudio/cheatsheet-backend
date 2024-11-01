@@ -15,7 +15,12 @@ export default [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'script-src': ['https://cdn.ckeditor.com'],
+          'script-src': [
+            "'self'",
+            'https://cdn.ckeditor.com',
+            'https://api-cheatsheet.up.railway.app',
+          ],
+          'connect-src': ["'self'", 'https://api-cheatsheet.up.railway.app'],
         },
       },
     },
