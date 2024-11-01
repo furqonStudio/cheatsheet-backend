@@ -16,20 +16,39 @@
       "type": "string",
       "required": true
     },
-    "description": {
-      "type": "richtext"
-    },
     "cheatsheet": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::cheatsheet.cheatsheet",
       "inversedBy": "notes"
     },
-    "block": {
-      "type": "blocks"
+    "description": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor",
+      "required": true
     },
-    "json": {
-      "type": "json"
+    "stad": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "standard"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "light": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "light"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "testttt": {
+      "type": "richtext"
     }
   }
 }

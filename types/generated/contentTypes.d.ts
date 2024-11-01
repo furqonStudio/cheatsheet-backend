@@ -579,8 +579,6 @@ export interface ApiNoteNote extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::cheatsheet.cheatsheet'
     >;
-    block: Schema.Attribute.Blocks;
-    json: Schema.Attribute.JSON;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
